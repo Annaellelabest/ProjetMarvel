@@ -1,0 +1,50 @@
+<div *ngIf="selectedEvent">
+
+<!-- Bouton pour revenir en arrière -->
+  <button (click)="goBack()">Back</button>
+
+<!-- Affichage du titre du event -->
+    <h2>{{ selectedEvent.title }}</h2>
+    <img class="character"[src]="getThumbnailUrl(selectedEvent)" alt="{{ selectedEvent.title }} Thumbnail">
+   
+<!-- Affichage de l'image de l'event avec la gestion de l'absence de description -->
+    <p>Description: {{ selectedEvent.description || 'No description available' }}</p>
+    <div class="overlay">
+  
+<!-- Section pour afficher les éléments liées à la "carte" avec gestion des cas où il y en a ou pas -->
+    <h3>Creators</h3>
+    <ul class="creator">
+        <ng-container *ngIf="creators && creators.length > 0; else noCreators">
+          <li *ngFor="let creator of creators">
+            <app-creator [creator]="creator"></app-creator>
+          </li>
+        </ng-container>
+        <ng-template #noCreators>
+          <li class="no-available-message">No creators available</li>
+        </ng-template>
+      </ul>
+
+    </div>
+
+    <h3>Characters</h3>
+    <ul class="comic">
+        <li *ngFor="let character of characters">
+            <app-characters [character]="character"></app-characters>
+        </li>
+        </ul>
+        <ng-template #noCharacters>
+        <p class="no-available-message">No characters available</p>
+        </ng-template>
+
+    <h3>Comics</h3>
+    <ul class="comic">
+        <li *ngFor="let comic of comics">
+            <app-comic [comic]="comic"></app-comic>
+        </li>
+        </ul>
+        <ng-template #noComucs>
+        <p class="no-available-message">No characters available</p>
+        </ng-template>
+        <ul class="comic">
+    </ul>
+</div>

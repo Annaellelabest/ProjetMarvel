@@ -1,0 +1,28 @@
+<div *ngIf="selectedCreator">
+
+<!-- Bouton pour revenir en arrière -->
+    <button (click)="goBack()">Back</button>
+
+<!-- Affichage du nom du personnage -->
+    <h2>{{ selectedCreator.fullName }}</h2>
+
+<!-- Affichage de l'image du createur avec la gestion de l'absence de description -->
+    <img class="character"[src]="getThumbnailUrl(selectedCreator)" alt="{{ selectedCreator.fullName }} Thumbnail">
+    <p>Description: {{ selectedCreator.description || 'No description available' }}</p>
+
+<!-- Section pour afficher les éléments liées à la "carte" avec gestion des cas où il y en a ou pas -->
+    <h3>Events</h3>
+    <ul class="comic">
+        <li *ngFor="let event of events">
+            <app-event [event]="event"></app-event>
+        </li>
+    </ul>
+
+    <h3>Comics</h3>
+    <ul class="comic">
+        <li *ngFor="let comic of comics">
+            <app-comic [comic]="comic"></app-comic>
+        </li>
+    </ul>
+
+</div>

@@ -1,0 +1,7 @@
+<!-- Affiche le nom du comic -->
+      <h3 >{{ comic.title }}</h3>
+        <!-- Lien vers la page de détails du comic en utilisant le routeur Angular -->
+      <a [routerLink]="['/comic-detail', comic?.id]">
+        <!-- Affiche la miniature du comic -->
+      <img [src]="getThumbnailUrl(comic)" alt="{{ comic.title }} Thumbnail">
+      </a>
